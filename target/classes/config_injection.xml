@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    to enable annotations-->
+    <context:annotation-config/>
+
+    <bean class="com.springcore.injection.Student"
+          name="student1"
+          p:studentId="12345"
+          p:studentName="Yash"
+          p:studentAddress="MZN"/>
+<!--    <bean class="com.springcore.injection.Scorecard"-->
+<!--          name="scorecard1">-->
+<!--        <property name="total" value="450"/>-->
+<!--        <property name="percentage" value="95"/>-->
+<!--        <property name="s1" ref="student1"/>-->
+
+<!--    </bean>-->
+
+<!--    //Setter injection-->
+<!--    <bean class="com.springcore.injection.Scorecard"-->
+<!--          name="scorecard1"-->
+<!--          p:total="450"-->
+<!--          p:percentage="90"-->
+<!--          p:s1-ref="student1"/>-->
+
+<!--    //constructor injection-->
+    <bean class="com.springcore.injection.Scorecard"
+          name="scorecard1" init-method="init" destroy-method="destroy">
+         <constructor-arg value="450" type="int"/>
+         <constructor-arg value="90" type ="int"/>
+         <constructor-arg ref="student1"/>
+    </bean>
+
+    <bean class="com.springcore.annotations.init.Annotations"
+          name="exampleAnnotation">
+        <constructor-arg value="English"/>
+    </bean>
+</beans>
